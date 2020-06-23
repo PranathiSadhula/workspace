@@ -1,0 +1,25 @@
+package week1.day2;
+Calculator -> Class
+4 methods add, sub, mul and divide
+2 args
+return the value
+5th method as clear
+print "I cleared the display"
+main()
+
+public class Calculatar {
+	
+	public int add(int num1, int num2) {
+		
+	}
+	
+public int sub(int num1, int num2) {
+		
+	}
+public int mul(int num1, int num2) {
+	
+}
+public int divide(int num1, int num2) {
+	
+}
+}

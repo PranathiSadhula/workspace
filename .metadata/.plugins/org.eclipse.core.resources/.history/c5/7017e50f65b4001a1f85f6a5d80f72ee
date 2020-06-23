@@ -1,0 +1,15 @@
+
+package week2.day2.apitudehotelbeds;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+
+public class AvailabilityByDestination extends XSignature{
+	
+	@Test
+	public void availabilityByDestination() {
+		// Step1 : Base url setup
+		RestAssured.baseURI = "https://api.bestbuy.com/v1";
+}
+}

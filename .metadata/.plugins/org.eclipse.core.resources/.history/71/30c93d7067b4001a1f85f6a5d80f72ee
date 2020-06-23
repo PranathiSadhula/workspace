@@ -1,0 +1,102 @@
+
+package week2.day2.apitudehotelbeds;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+
+public class AvailabilityByDestination extends ApiTuteHotelBedsBasics{
+	
+	@BeforeTest
+	public void buildHeaders()   {
+		List<Header> hList = new ArrayList<Header>();
+		hList.add(new Header("Api-key",apiKey));
+		hList.add(new Header("X-Signature",signature));
+		
+		hMap = new Headers(hList);		
+		
+	}
+	
+	
+	@Test
+	public void availabilityByDestination() {
+		// Step1 : Base url setup
+		RestAssured.baseURI =endpoint  +"/hotel-api/1.0";
+		
+		Response resp = RestAssured
+				.given()
+				.headers(hMap)
+				.contentType(ContentType.JSON)
+				.body("{\r\n" + 
+						"    \"stay\": {\r\n" + 
+						"        \"checkIn\": \"2020-06-25\",\r\n" + 
+						"        \"checkOut\": \"2020-06-26\"\r\n" + 
+						"    },\r\n" + 
+						"    \"occupancies\": [\r\n" + 
+						"        {\r\n" + 
+						"            \"rooms\": 1,\r\n" + 
+						"            \"adults\": 1,\r\n" + 
+						"            \"children\": 0\r\n" + 
+						"        }\r\n" + 
+						"    ],\r\n" + 
+						"    \"destination\": {\r\n" + 
+						"        \"code\":\"DEL\"\r\n" + 
+						"    },\r\n" + 
+						"     \"rooms\": {\r\n" + 
+						"        \"included\": true,\r\n" + 
+						"        \"room\": [\r\n" + 
+						"            \"DBT.ST\",\r\n" + 
+						"            \"DBT.DX\"\r\n" + 
+						"        ]\r\n" + 
+						"    },\r\n" + 
+						"    \"reviews\": [\r\n" + 
+						"        {\r\n" + 
+						"            \"type\": \"HOTELBEDS\",\r\n" + 
+						"            \"maxRate\": 5,\r\n" + 
+						"            \"minRate\": 4,\r\n" + 
+						"            \"minReviewCount\": 4\r\n" + 
+						"        }\r\n" + 
+						"    ]\r\n" + 
+						"}")
+				
+				.post("hotels");
+		
+		JsonPath jsonresp = resp.jsonPath();
+		jsonresp.prettyPrint();
+	
+		
+	}
+	
+	@AfterTest
+	public void setRateKeyList()   {
+		var resp = pm.response.json();
+		var rateKeyList = [];
+		resp.hotels.hotels.forEach(function(entry){
+		   
+		    entry.rooms.forEach(function(entry){
+		        entry.rates.forEach(function(entry){
+		            var rateKey = entry.rateKey;
+		            rateKeyList.push(rateKey);
+		        });
+		    });
+		  
+		});
+
+		pm.environment.set("rateKeyList", rateKeyList);
+		setRateKeyList(rateKeyList) ;
+
+		
+	}
+	
+	
+}

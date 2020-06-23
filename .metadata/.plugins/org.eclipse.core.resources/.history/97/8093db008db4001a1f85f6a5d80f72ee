@@ -1,0 +1,16 @@
+package week3.day2.uibank;
+
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+
+public class UiBankBasics {
+	String userId;
+	
+	@BeforeSuite
+	public void uiBankBasics () {
+	// Step1 : Base url setup
+	RestAssured.baseURI = "https://uibank-api.azurewebsites.net/api/";
+	}
+}

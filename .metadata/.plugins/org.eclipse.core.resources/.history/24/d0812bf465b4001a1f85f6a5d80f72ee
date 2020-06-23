@@ -1,0 +1,35 @@
+
+package week2.day2.apitudehotelbeds;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+
+public class AvailabilityByDestination extends ApiTuteHotelBedsBasics{
+	
+	@BeforeTest
+	public void buildHeaders()   {
+		List<Header> hList = new ArrayList<Header>();
+		hList.add(new Header("Api-key",apiKey));
+		hList.add(new Header("X-Signature","signature"));
+		
+		Headers hMap = new Headers(hList);		
+		
+	}
+	
+	
+	@Test
+	public void availabilityByDestination() {
+		// Step1 : Base url setup
+		RestAssured.baseURI =endpoint  +"hotel-api/1.0";
+		
+	
+		
+}
+}

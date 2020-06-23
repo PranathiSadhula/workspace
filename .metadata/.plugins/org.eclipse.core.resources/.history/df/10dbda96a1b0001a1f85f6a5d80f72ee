@@ -1,0 +1,39 @@
+package week2.day1.zoho;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
+
+public class OAUTH2GrantTypeTestCase {
+
+    private static final Log log = LogFactory.getLog(OAUTH2GrantTypeTestCase.class);
+
+    @Test
+    public void testOAuthWithAuthorizationCode() {
+    	String clientid = "1000.RDXLRMR7U4GO4ISGGREI3XR4SESMVH";
+    	String secret = "9539b4bc3cc0c9ffe896d218087c088215020fd628";
+        Response response =
+         given().header("Authorization",clientid)
+		.contentType("application/x-www-form-urlencoded")
+		.formParam("grant_type","authorization_code")                                                   
+		.formParam("redirect_uri","http://www.zoho.com/subscriptions")
+		.formParam("response_type","code")
+		
+		.formParam("client_id", clientid)
+		.formParam("client_secret", secret)
+		 .when()
+		 .post("https://accounts.zoho.com/oauth/v2/token");
+        JsonPath jsonPath = response.jsonPath();
+		
+		
+		
+ //JSONObject jsonObject = new JSONObject(response.getBody().asString());
+String accessToken = jsonObject.get("access_token").toString();
+String tokenType = jsonObject.get("token_type").toString();
+log.info("Oauth Token with type " + tokenType + "   " + accessToken);
+      
+    }

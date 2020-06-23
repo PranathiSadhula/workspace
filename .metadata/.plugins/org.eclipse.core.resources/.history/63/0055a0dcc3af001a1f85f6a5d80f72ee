@@ -1,0 +1,13 @@
+package week1.day2.openweather;
+
+import org.testng.annotations.Test;
+
+public class MajorCitiesWeather {
+
+	@Test
+	public void majorCitiesWeather() {
+
+		
+	}
+
+}

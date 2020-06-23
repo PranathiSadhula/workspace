@@ -1,0 +1,31 @@
+package week2.day1.zoho;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
+
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+
+public class ZohoBasics {
+public String zohoOauthToken;
+public String customer_id = "";
+	@BeforeSuite
+	public void getAccessToken() {
+		
+		
+		zohoOauthToken = "1000.56b9be05b9ee1788f04e548210daf732.9a12d2f0ba3a38a8994a9e98f139fa19";
+	}
+
+	
+}

@@ -1,0 +1,11 @@
+package week1.day2.openweather;
+
+public class MajorCitiesWeather {
+
+	
+	public void getCityWeather(String city) {
+
+	
+	}
+
+}

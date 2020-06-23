@@ -1,0 +1,19 @@
+package week2.day1.zoho;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
+
+public class OAUTH2GrantTypeTestCase {
+
+    @Test
+    public void oauth2GrantTypeTestCase() {
+    	String clientid = "1000.RDXLRMR7U4GO4ISGGREI3XR4SESMVH";
+    	String secret = "9539b4bc3cc0c9ffe896d218087c088215020fd628";
+       
+      
+    }
+}

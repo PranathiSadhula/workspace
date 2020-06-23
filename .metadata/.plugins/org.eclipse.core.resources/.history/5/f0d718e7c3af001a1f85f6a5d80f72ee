@@ -1,0 +1,15 @@
+package week1.day2.openweather;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+
+public class MajorCitiesWeather {
+
+	@Test
+	public void majorCitiesWeather() {
+		RestAssured.baseURI = "https://api.bestbuy.com/v1";
+		
+	}
+
+}

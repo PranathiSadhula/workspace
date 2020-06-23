@@ -1,0 +1,52 @@
+package week2.day1.zoho;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
+public class OAUTH2GrantTypeTestCase {
+	
+	
+
+	private static final String clientId = "1000.RDXLRMR7U4GO4ISGGREI3XR4SESMVH";//clientId
+	private static final String callBackUrl = "http://www.zoho.com/subscriptions";//The url defined in WSO2
+	private static final String authorizeUrl = "https://accounts.zoho.com/oauth/v2/auth?";
+	static String authorizationRedirect = getAuthGrantType(callBackUrl);
+	private static String getAuthGrantType(String callbackURL){
+	    return authorizeUrl + "?response_type=code&client_id=" + clientId + "&redirect_uri=" + callbackURL + "&scope=testing&access_type=offline";
+	}
+	//Wait for user to logIn and then
+	//getAccessToken(with the authorizationCode from header name 'authorization_code', callbackUrl);
+	//Then call useBearerToken('access_token')
+	@Test()
+	private static void useBearerToken() {
+	    BufferedReader reader = null;
+	    try {
+	        URL url = new URL(authorizationRedirect);
+	        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+	         connection.setDoOutput(true);
+	        connection.setRequestMethod("GET");
+	        reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+	        String line = null;
+	        StringWriter out = new StringWriter(connection.getContentLength() > 0 ? connection.getContentLength() : 2048);
+	        while ((line = reader.readLine()) != null) {
+	            out.append(line);
+	        }
+	        String response = out.toString();
+	        System.out.println(response);
+	    } catch (Exception e) {
+
+	    }
+	}
+}

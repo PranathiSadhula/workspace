@@ -1,0 +1,73 @@
+package week1.day2.openweather;
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+
+public class TC02GetRainVolumeOfMumbai{
+	
+	 // http://api.openweathermap.org/data/2.5/ - domain from RESTAssuredBase using config file
+	  
+		double volume;
+	
+		@Test()
+		public void getCityWeatherDetails() throws ParseException {		
+		
+			RestAssured.baseURI = "https://api.openweathermap.org/data/2.5";
+			
+		
+			RestAssured.authentication=RestAssured.DEFAULT_AUTH;
+			long today = new Date().getTime();
+			
+			long last3days = 24 *3 *60 * 60 * 1000;
+			long timeOn3daysBck = today - last3days;
+		
+			Map<String,String> params = new HashMap<String, String>();
+			params.put("lon","72.8777");
+			params.put("lat","19.0760");
+			
+			params.put("start",String.valueOf(timeOn3daysBck));
+			params.put("end",String.valueOf(today));
+			params.put("appid", "01bca4841fa478520c64a12db004f782");
+			
+			
+			Response resp = RestAssured.given().params(params).accept(ContentType.JSON).get("onecall");
+	 
+			JsonPath jsonPath = resp.jsonPath();
+			jsonPath.prettyPrint();
+//			List<Object> list = jsonPath.getList("hourly");
+//			System.out.println("size"+list.size());	
+//			
+//			for(int i=0;i<list.size()-1;i++)
+//			{		
+//		
+//			Float val = jsonPath.get("hourly["+i+"].rain.1h");
+//				
+//		    if(val!=null)
+//		    {
+//		    	System.out.println("Last 3 days Hourly Rain Data:"+val);
+//		    	volume=volume+val;
+//		    }
+//			
+//			}
+//			
+//			System.out.println("***************************************************");
+//			
+//			System.out.println("Rain Volume in Mumbai for Last 3 days(MM): "+volume);
+//			
+//			System.out.println("***************************************************");
+//			
+		}	
+		
+	}
+
+

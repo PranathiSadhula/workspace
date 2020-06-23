@@ -1,0 +1,23 @@
+package week1.day2.openweather;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+
+public class MajorCitiesWeather {
+
+	@Test
+	public void majorCitiesWeather() {
+		RestAssured.baseURI = "http://api.openweathermap.org/data/2.5/find";
+		
+		Map<String, String> pMap = new HashMap<String, String>();
+		pMap.put("apiKey", "qUh3qMK14GdwAs9bO59QRSCJ");
+		pMap.put("lat", "21.7679");
+		pMap.put("lon","78.8718");
+		
+	}
+
+}

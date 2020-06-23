@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.concurrent.TimeUnit"/>
+<fullyQualifiedTypeName name="io.restassured.path.xml.XmlPath"/>
+<fullyQualifiedTypeName name="io.restassured.path.json.JsonPath"/>
+<fullyQualifiedTypeName name="java.text.DateFormat"/>
+<fullyQualifiedTypeName name="javax.print.attribute.standard.DateTimeAtCompleted"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="io.restassured.specification.RequestSpecification"/>
+<fullyQualifiedTypeName name="io.restassured.internal.RequestSpecificationImpl"/>
+<fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+<fullyQualifiedTypeName name="java.util.jar.JarFile"/>
+<fullyQualifiedTypeName name="java.util.Enumeration"/>
+<fullyQualifiedTypeName name="java.util.jar.JarEntry"/>
+<fullyQualifiedTypeName name="reflection.ListClasses"/>
+<fullyQualifiedTypeName name="jira.steps.BaseRequest"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.util.TreeMap"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="io.restassured.http.ContentType"/>
+<fullyQualifiedTypeName name="io.restassured.response.Response"/>
+<fullyQualifiedTypeName name="io.restassured.response.ResponseBody"/>
+<fullyQualifiedTypeName name="java.util.TreeSet"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="io.restassured.RestAssured"/>
+<fullyQualifiedTypeName name="org.testng.annotations.BeforeSuite"/>
+<fullyQualifiedTypeName name="week1.day1.paypal.GetAccessToken"/>
+<fullyQualifiedTypeName name="io.restassured.http.Header"/>
+<fullyQualifiedTypeName name="io.restassured.http.Headers"/>
+<fullyQualifiedTypeName name="org.testng.annotations.DataProvider"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.FilenameFilter"/>
+<fullyQualifiedTypeName name="week1.day1.paypal.PayPalBasics"/>
+<fullyQualifiedTypeName name="org.testng.annotations.AfterSuite"/>
+<fullyQualifiedTypeName name="org.testng.annotations.AfterTest"/>
+<fullyQualifiedTypeName name="org.testng.annotations.AfterMethod"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="week1.day2.bestbuy.ProductAvailabilityPostalCodeWithAreaFun"/>
+<fullyQualifiedTypeName name="org.testng.annotations.Test"/>
+</qualifiedTypeNameHistroy>

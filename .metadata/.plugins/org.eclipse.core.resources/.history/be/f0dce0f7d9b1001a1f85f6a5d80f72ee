@@ -1,0 +1,29 @@
+package week2.day2.apitudehotelbeds;
+
+import java.util.Date;
+
+public class XSignature {
+
+	public void generateXSignature() {
+	//Begin UTC creation
+	long utcDate = new Date().getTime() / 1000;
+
+	//Begin Signature Assembly
+	String publicKey = "xn2dwhdwqd3t8rv4dj9zkdt9";
+	String privateKey = "AQ8SfQkeJu";
+	String xsignature;
+	
+	 xsignature = org.apache.commons.codec.digest.DigestUtils
+			 .sha256Hex(apiKey + secret + System.currentTimeMillis() / 1000);
+	//Begin SHA-256 Encryption
+	hash = CryptoJS.SHA256(assemble).toString();
+	encryption = (hash.toString(CryptoJS.enc.Hex));
+	if(environment["X-Signature"] !== undefined){
+	    postman.setEnvironmentVariable("X-Signature", encryption);
+	}
+	else {
+	    postman.setGlobalVariable("X-Signature", encryption);
+	}
+	
+	}
+}

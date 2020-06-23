@@ -1,0 +1,6 @@
+package week3.day2.uibank;
+
+public class UiBankBasics {
+	String userId;
+
+}

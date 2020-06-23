@@ -1,0 +1,68 @@
+package reflection;
+
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.lang.reflect.Method;
+
+public class ListClasses {
+
+	public static void main(String[] args) {
+		System.out.println("Listing class files in given jar :");
+		listClasses("C:\\Users\\91949\\.m2\\repository\\org\\seleniumhq\\selenium\\selenium-java\\4.0.0-alpha-1\\selenium-java-4.0.0-alpha-1.jar");
+	}
+
+	private static final String CLASS_SUFFIX = ".class";
+
+	public static void listClasses(String jarFilePath) {
+
+		try {
+			//JarFile jarFile = new JarFile("C:\\Users\\91949\\.m2\\repository\\org\\testng\\testng\\7.1.0\\testng-7.1.0.jar");
+			 JarFile jarFile = new JarFile(jarFilePath);
+
+			Enumeration allEntries = jarFile.entries();
+			while (allEntries.hasMoreElements()) {
+				JarEntry entry = (JarEntry) allEntries.nextElement();
+				String className = entry.getName();
+				if (className.contains(".class")) {
+					System.out.println(className);
+					listMethods(className);
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("exception in jarFile " + e);
+		}
+	}
+
+	public static void listMethods(String classfile) {
+		String name = classfile;
+		if (name.endsWith(CLASS_SUFFIX)) {
+			/**
+			 * Populate the class name
+			 */
+			name = name.replaceAll("/", ".").substring(0, name.lastIndexOf("."));
+
+			/**
+			 * Retrieve the methods via reflection.
+			 */
+			Method[] methods;
+			try {
+				methods = Class.forName(name).getDeclaredMethods();
+
+				for (Method m : methods) {
+					/**
+					 * Print the message in console if the method name is expected.
+					 */
+					System.out.println(m.getName());
+				}
+			} catch (SecurityException e) {
+				System.out.println("Security exception :" + e);
+			} catch (ClassNotFoundException e) {
+				System.out.println("Classnot found exception :" + e);
+			}
+
+		}
+
+	}
+}

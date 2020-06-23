@@ -1,0 +1,14 @@
+<testsuite failures="1" name="src/test/java/feature/IncidentManagement.feature" skipped="0" tests="1" time="5.652476">
+  <testcase classname="src.test.java.feature.IncidentManagement" name="Create Incident" time="5.652476">
+    <failure message="IncidentManagement.feature:6 - status code was: 401, expected: 200, response time: 4124, url: https://dev49243.service-now.com/api/now/table/incident, response: {&quot;error&quot;:{&quot;detail&quot;:&quot;Required to provide Auth information&quot;,&quot;message&quot;:&quot;User Not Authenticated&quot;},&quot;status&quot;:&quot;failure&quot;}">Given url 'https://dev49243.service-now.com/api/now/table/incident' ....... passed
+And header Authorization = call read('basic-auth.js') { username 'admin', password: 'Tuna@123' } . passed
+When method get ........................................................... passed
+Then status 200 ........................................................... failed
+
+Stack Trace:
+com.intuit.karate.exception.KarateException: IncidentManagement.feature:6 - status code was: 401, expected: 200, response time: 4124, url: https://dev49243.service-now.com/api/now/table/incident, response: {"error":{"detail":"Required to provide Auth information","message":"User Not Authenticated"},"status":"failure"}&#13;
+	at ✽.Then status 200 (IncidentManagement.feature:6)&#13;
+
+And match header Content-Type contains 'application/json' ................. skipped</failure>
+  </testcase>
+</testsuite>

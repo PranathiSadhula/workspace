@@ -1,0 +1,46 @@
+package week2.day1.zoho;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
+
+public class OAUTH2GrantTypeTestCase {
+	
+
+    @Test
+    public void oauth2GrantTypeTestCase() {
+    	String clientid = "1000.RDXLRMR7U4GO4ISGGREI3XR4SESMVH";
+    	
+    	RestAssured.baseURI= "https://accounts.zoho.com/oauth/v2/auth?\r\n" + 
+    			"scope=ZohoSubscriptions.fullaccess.all&\r\n" + 
+    			"client_id=1000.RDXLRMR7U4GO4ISGGREI3XR4SESMVH&\r\n" + 
+    			"state=testing&\r\n" + 
+    			"response_type=code&\r\n" + 
+    			"redirect_uri=http://www.zoho.com/subscriptions&\r\n" + 
+    			"access_type=offline";
+        Response response =
+        		RestAssured.given()
+        
+		.formParam("access_type","offline")                                                   
+		.formParam("redirect_uri","http://www.zoho.com/subscriptions")
+		.formParam("response_type","code")
+		.formParam("scope", "ZohoSubscriptions.fullaccess.all")
+		.formParam("client_id", clientid)
+		.formParam("state", "testing")
+		 .when()
+		 .post("https://accounts.zoho.com/oauth/v2/token");
+        JsonPath jsonPath = response.jsonPath();
+		
+		jsonPath.prettyPrint();
+		
+ //JSONObject jsonObject = new JSONObject(response.getBody().asString());
+String accessToken = jsonPath.get("access_token").toString();
+String tokenType = jsonPath.get("token_type").toString();
+System.out.println("Oauth Token with type " + tokenType + "   " + accessToken);
+      
+    }
+}

@@ -1,0 +1,31 @@
+package week2.day2.apitudehotelbeds;
+
+public class XSignature {
+
+	public void generateXSignature() {
+	//Begin UTC creation
+	var utcDate = Math.floor(new Date().getTime() / 1000);
+
+	//Begin Signature Assembly
+	var publicKey = globals["Api-key"];
+	var privateKey = globals["secret"];
+
+	if(environment["Api-key"] !== undefined){
+	    publicKey = environment["Api-key"];
+	    privateKey = environment["secret"];
+	}
+
+	var assemble = (publicKey+privateKey+utcDate);
+
+	//Begin SHA-256 Encryption
+	hash = CryptoJS.SHA256(assemble).toString();
+	encryption = (hash.toString(CryptoJS.enc.Hex));
+	if(environment["X-Signature"] !== undefined){
+	    postman.setEnvironmentVariable("X-Signature", encryption);
+	}
+	else {
+	    postman.setGlobalVariable("X-Signature", encryption);
+	}
+	
+	}
+}

@@ -1,0 +1,85 @@
+package week1.day2.openweather;
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+
+public class TC02GetRainVolumeOfMumbai{
+	
+	 // http://api.openweathermap.org/data/2.5/ - domain from RESTAssuredBase using config file
+	  
+		double volume;
+	
+		@Test()
+		public void getCityWeatherDetails() throws ParseException {		
+			
+			//URL for api call
+			RestAssured.baseURI = "https://api.openweathermap.org/data/2.5";
+			
+			//Authentication
+			RestAssured.authentication=RestAssured.DEFAULT_AUTH;
+		
+			long startDate = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
+					.parse("06/16/2020 10:33:14").getTime() / 1000;
+			
+			long endDate = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
+					.parse("06/13/2020 00:00:00").getTime() / 1000;
+			
+			// step 4: get New cases updated in Recent day
+			long currTime = new Date().getTime();
+			// console.log("currTime :"+currTime);
+			long last24thHr = 24 * 60 * 60 * 1000;
+			System.out.println(startDate);
+			System.out.println(currTime);
+			System.out.println(endDate);
+			Map<String,String> parameterRequest=new HashMap<String, String>();
+			parameterRequest.put("lon","72.8777");
+			parameterRequest.put("lat","19.0760");
+			//parameterRequest.put("start","1591362395");
+			//parameterRequest.put("end","1591621595");
+			
+			parameterRequest.put("start",String.valueOf(startDate));
+			parameterRequest.put("end",String.valueOf(endDate));
+			parameterRequest.put("appid", "01bca4841fa478520c64a12db004f782");
+			
+			
+			Response resp = RestAssured.given().params(parameterRequest).accept(ContentType.JSON).get("onecall");
+	 
+			JsonPath jsonPath = resp.jsonPath();
+			jsonPath.prettyPrint();
+//			List<Object> list = jsonPath.getList("hourly");
+//			System.out.println("size"+list.size());	
+//			
+//			for(int i=0;i<list.size()-1;i++)
+//			{		
+//		
+//			Float val = jsonPath.get("hourly["+i+"].rain.1h");
+//				
+//		    if(val!=null)
+//		    {
+//		    	System.out.println("Last 3 days Hourly Rain Data:"+val);
+//		    	volume=volume+val;
+//		    }
+//			
+//			}
+//			
+//			System.out.println("***************************************************");
+//			
+//			System.out.println("Rain Volume in Mumbai for Last 3 days(MM): "+volume);
+//			
+//			System.out.println("***************************************************");
+//			
+		}	
+		
+	}
+
+

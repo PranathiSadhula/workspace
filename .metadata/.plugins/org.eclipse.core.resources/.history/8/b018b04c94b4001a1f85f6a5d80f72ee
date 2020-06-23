@@ -1,0 +1,16 @@
+package week3.day2.uibank;
+
+
+public class UiBankBasics {
+	 Object userId ;
+	
+	public Object getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Object userId) {
+		this.userId = userId;
+	}
+
+	
+}

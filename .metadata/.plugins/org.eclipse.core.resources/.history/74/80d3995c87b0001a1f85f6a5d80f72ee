@@ -1,0 +1,131 @@
+package week1.day2.openweather;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+
+public class RainVolumeOfMumbai{
+	@Test
+	public void getVolumeofRain() throws ParseException {
+
+
+		RestAssured.baseURI= "http://api.openweathermap.org/data/2.5/onecall";
+
+
+
+		long today = new Date().getTime();
+		
+		long last3days = 24 *3 *60 * 60 * 1000;
+		long timeOn3daysBck = today - last3days;
+	
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("lon","72.8777");
+		params.put("lat","19.0760");
+		
+		params.put("start",String.valueOf(timeOn3daysBck));
+		params.put("end",String.valueOf(today));
+		params.put("appid", "63ba265769b16344f4f41db6bcd793f3");
+		
+
+		Response response = RestAssured
+				.given()
+				.log().all() 
+				.params(params)
+				.accept(ContentType.JSON)
+				.get();
+
+		if(response.getStatusCode()==200) {
+			System.out.println(" Valid Response Returned");
+		}
+
+		response.prettyPrint();
+
+		JsonPath jsonPath = response.jsonPath();
+		List<Object> hourList = jsonPath.getList("hourly");
+		int size = hourList.size();
+		float rainfall, totalVolume =0.0f;
+
+
+		for (int i =0 ; i<size ; i++) {
+
+			if (jsonPath.get("hourly["+i+"].rain")!=null)
+			{
+
+				rainfall = jsonPath.get("hourly["+i+"].rain.1h");
+				totalVolume =totalVolume+ rainfall;
+			}
+		}
+
+		System.out.println("Total Volume :" + totalVolume + "mm");
+		
+	}
+	
+	
+		@Test()
+		public void rainVolumeOfMumbai() throws ParseException {		
+		
+
+			RestAssured.baseURI= "http://api.openweathermap.org/data/2.5/onecall";
+
+
+
+			long today = new Date().getTime();
+			
+			long last3days = 24 *3 *60 * 60 * 1000;
+			long timeOn3daysBck = today - last3days;
+		
+			Map<String,String> params = new HashMap<String, String>();
+			params.put("lon","72.8777");
+			params.put("lat","19.0760");
+			
+			params.put("start",String.valueOf(timeOn3daysBck));
+			params.put("end",String.valueOf(today));
+			params.put("appid", "63ba265769b16344f4f41db6bcd793f3");
+			
+
+			Response resp = RestAssured
+					.given()
+					.log().all() 
+					.params(params)
+					.accept(ContentType.JSON)
+					.get();
+
+			JsonPath jsonPath = resp.jsonPath();
+			
+			List<Object> list = jsonPath.getList("hourly");
+			System.out.println("size"+list.size());	
+			
+			for(int i=0;i<list.size()-1;i++)
+			{		
+		
+			Float val = jsonPath.get("hourly["+i+"].rain.1h");
+				
+		    if(val!=null)
+		    {
+		    	System.out.println("Last 3 days Hourly Rain Data:"+val);
+		    	//volume=volume+val;
+		    }
+			
+			}
+			
+			System.out.println("***************************************************");
+			
+			//System.out.println("Rain Volume in Mumbai for Last 3 days(MM): "+volume);
+			
+			System.out.println("***************************************************");
+			
+		}	
+		
+	}
+
+

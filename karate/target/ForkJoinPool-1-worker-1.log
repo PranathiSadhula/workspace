@@ -1,0 +1,25 @@
+12:10:51.180 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+12:10:52.315 request:
+1 > GET https://dev49243.service-now.com/api/now/table/incident
+1 > Accept-Encoding: gzip,deflate
+1 > Authorization: Basic bnVsbDpudWxs
+1 > Connection: Keep-Alive
+1 > Host: dev49243.service-now.com
+1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_171)
+
+12:10:56.887 response time in milliseconds: 4124.21
+1 < 401
+1 < Cache-control: no-cache,no-store,must-revalidate,max-age=-1
+1 < Connection: close
+1 < Content-Type: application/json;charset=UTF-8
+1 < Date: Sat, 02 May 2020 06:40:56 GMT
+1 < Expires: 0
+1 < Pragma: no-store,no-cache
+1 < Server: ServiceNow
+1 < Set-Cookie: [JSESSIONID=650CC38C02208EA911FFFA18F0BF5DCB; Path=/; HttpOnly;Secure, BIGipServerpool_dev49243=2458146826.38974.0000; path=/; Httponly; Secure]
+1 < Strict-Transport-Security: max-age=63072000; includeSubDomains
+1 < Transfer-Encoding: chunked
+1 < WWW-Authenticate: BASIC realm="Service-now"
+{"error":{"detail":"Required to provide Auth information","message":"User Not Authenticated"},"status":"failure"}
+
+12:10:56.889 status code was: 401, expected: 200, response time: 4124, url: https://dev49243.service-now.com/api/now/table/incident, response: {"error":{"detail":"Required to provide Auth information","message":"User Not Authenticated"},"status":"failure"}
