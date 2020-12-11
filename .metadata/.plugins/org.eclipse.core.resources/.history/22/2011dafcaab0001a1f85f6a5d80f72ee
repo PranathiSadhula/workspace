@@ -13,10 +13,10 @@ public class OAUTH2GrantTypeTestCase {
 
     @Test
     public void oauth2GrantTypeTestCase() {
-    	String clientid = "1000.RDXLRMR7U4GO4ISGGREI3XR4SESMVH";
-    	String secret = "9539b4bc3cc0c9ffe896d218087c088215020fd628";
+    	String clientid = "CLIEINT_ID";
+    	String secret = "SECRET";
     	
-    	String AUTHORIZATION_CODE = "9539b4bc3cc0c9ffe896d218087c088215020fd628"; 
+    	String AUTHORIZATION_CODE = "AUTH_CODE"; 
     	https://accounts.zoho.com/oauth/v2/auth?
     		scope=ZohoSubscriptions.fullaccess.all&
     		client_id=1000.A5D1NLEPOW30R36610Y4YH1YUL0RGH&
